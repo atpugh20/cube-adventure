@@ -4,22 +4,19 @@ class Player {
     this.size = size;
     this.color = color;
     this.dir = { x: 0, y: 1 };
+    this.speed = 5;
     this.movement = {
       time: 0,
       keys: { w: 0, a: 0, s: 0, d: 0 },
     };
     this.attacking = false;
+    this.attackInterval = 0;
   }
 
   draw(ctx) {
     if (this.dir.y === -1) {
       ctx.fillStyle = this.color;
-      ctx.fillRect(
-        this.pos.x * this.size,
-        this.pos.y * this.size,
-        this.size,
-        this.size
-      );
+      ctx.fillRect(this.pos.x, this.pos.y, this.size, this.size);
     } else {
       const image = new Image();
       if (this.dir.x === -1) {
@@ -29,34 +26,30 @@ class Player {
       } else {
         image.src = "./assets/textures/player/playerFront.png";
       }
-      ctx.drawImage(
-        image,
-        this.pos.x * this.size,
-        this.pos.y * this.size,
-        this.size,
-        this.size
-      );
+      ctx.drawImage(image, this.pos.x, this.pos.y, this.size, this.size);
     }
   }
 
   update() {
-    this.movement.time++;
-    if (this.movement.time % 2 === 0) {
-      if (this.movement.keys.w) {
-        this.changeDirection("w");
-        this.move("w");
-      }
-      if (this.movement.keys.a) {
-        this.changeDirection("a");
-        this.move("a");
-      }
-      if (this.movement.keys.s) {
-        this.changeDirection("s");
-        this.move("s");
-      }
-      if (this.movement.keys.d) {
-        this.changeDirection("d");
-        this.move("d");
+    if (this.attacking === false) {
+      this.movement.time++;
+      if (this.movement.time % 2 === 0) {
+        if (this.movement.keys.w) {
+          this.changeDirection("w");
+          this.move("w");
+        }
+        if (this.movement.keys.a) {
+          this.changeDirection("a");
+          this.move("a");
+        }
+        if (this.movement.keys.s) {
+          this.changeDirection("s");
+          this.move("s");
+        }
+        if (this.movement.keys.d) {
+          this.changeDirection("d");
+          this.move("d");
+        }
       }
     }
   }
@@ -69,22 +62,27 @@ class Player {
   }
 
   move(key) {
-    if (key === "w" && this.pos.y > 1) this.pos.y--;
-    if (key === "s" && this.pos.y < rows - 2) this.pos.y++;
-    if (key === "a" && this.pos.x > 1) this.pos.x--;
-    if (key === "d" && this.pos.x < cols - 2) this.pos.x++;
+    if (key === "w" && this.pos.y > squareSize + this.speed)
+      this.pos.y -= this.speed;
+    if (key === "s" && this.pos.y < cH - squareSize - this.size - this.speed)
+      this.pos.y += this.speed;
+    if (key === "a" && this.pos.x > squareSize + this.speed)
+      this.pos.x -= this.speed;
+    if (key === "d" && this.pos.x < cW - squareSize - this.size - this.speed)
+      this.pos.x += this.speed;
   }
 
   attack(ctx) {
-    if (this.attacking === false) {
-      this.attacking = true;
+    if (this.attacking && this.attackInterval < 5) {
       ctx.fillStyle = "grey";
       ctx.fillRect(
-        (this.pos.x + this.dir.x) * this.size,
-        (this.pos.y + this.dir.y) * this.size,
+        this.pos.x + this.dir.x * this.size,
+        this.pos.y + this.dir.y * this.size,
         this.size,
         this.size
       );
+      this.attackInterval++;
     }
+    if (this.attackInterval > 5) this.attacking = false;
   }
 }

@@ -11,10 +11,10 @@ canvas.style.backgroundColor = "white";
 const rows = 30;
 const cols = 40;
 const squareSize = cW / cols;
-const player = new Player(5, 5, squareSize, "rgb(0,0,255)");
+const player = new Player(50, 50, squareSize, "rgb(0,0,255)");
 const enemies = [
-  new Enemy(10, 10, squareSize, "rgb(255,0,0)"),
-  new Enemy(15, 20, squareSize, "rgb(255,0,0)"),
+  new Enemy(100, 100, squareSize, "rgb(255,0,0)"),
+  new Enemy(150, 200, squareSize, "rgb(255,0,0)"),
   new Enemy(cols - 2, rows - 2, squareSize, "rgb(255,0,0)"),
 ];
 
@@ -27,16 +27,19 @@ window.addEventListener("keydown", (e) => {
   const k = e.key;
   if (k === "w" || k === "a" || k === "s" || k === "d")
     player.movement.keys[k] = 1;
-  if (k === " ") player.attack(ctx);
+  if (k === " ") player.attacking = true;
 });
 
 window.addEventListener("keyup", (e) => {
   const k = e.key;
   if (k === "w" || k === "a" || k === "s" || k === "d")
     player.movement.keys[k] = 0;
-  if (k === " ") player.attacking = false;
+  if (k === " ") {
+    player.attacking = false;
+    player.attackInterval = 0;
+  }
 });
-setInterval(draw, 1000 / 30);
+setInterval(draw, 1000 / 60);
 
 /* FUNCTIONS */
 
@@ -55,6 +58,7 @@ function draw() {
     }
   }
   player.update();
+  player.attack(ctx);
   player.draw(ctx);
   for (let enemy of enemies) {
     enemy.update(player.pos);
