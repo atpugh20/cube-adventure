@@ -8,33 +8,18 @@ private:
 public:
     Vec2(float x, float y) : x(x), y(y) {}
 
-    void Add(Vec2 vec) {
-        x += vec.x;
-        y += vec.y;
-    }
+    // Standard Operations
+    void Add(Vec2 vec);
+    void Sub(Vec2 vec);
+    void Mult(float scalar);
+    void Div(float scalar);
 
-    void Sub(Vec2 vec) {
-        x -= vec.x;
-        y -= vec.y;
-    }
+    // Advanced Operations
+    Vec2 Copy();
+    void Normalize();
 
-    void Mult(float scalar) {
-        x *= scalar;
-        y *= scalar;
-    }
-
-    void Div(float scalar) {
-        if (scalar == 0) {
-            std::cout << "Cannot divide by 0\n";
-            scalar = 1; 
-        }
-        x /= scalar;
-        y /= scalar;
-    }
-
-    void Normalize() { Div(GetMagnitude()); }
-    Vec2 Copy() { return Vec2(x, y); }
-    float GetMagnitude() { return std::sqrt(x * x + y * y); }
-    float GetX() { return x; }
-    float GetY() { return y; }
+    // Getters
+    float GetMagnitude();
+    float GetX();
+    float GetY();
 };
