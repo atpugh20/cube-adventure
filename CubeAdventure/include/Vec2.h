@@ -5,7 +5,7 @@ private:
     float x, y;
 
 public:
-    Vec2(float x, float y) : x(x), y(y)  {}
+    Vec2(float x = 0, float y = 0) : x(x), y(y)  {}
     
     // Standard operations
     void Add(Vec2 vec);

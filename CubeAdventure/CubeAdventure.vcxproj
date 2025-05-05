@@ -136,9 +136,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="external\GLAD\src\glad.c" />
-    <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\Vec2.cpp" />
-    <ClCompile Include="src\Window.cpp" />
+    <ClCompile Include="source\Application.cpp" />
+    <ClCompile Include="source\Vec2.cpp" />
+    <ClCompile Include="source\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="external\GLAD\include\glad\glad.h" />
@@ -147,9 +147,14 @@
     <ClInclude Include="include\Macros.h" />
     <ClInclude Include="include\Vec2.h" />
     <ClInclude Include="include\Window.h" />
+    <ClInclude Include="include\Player.h" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="external\GLFW\glfw3.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\fragment.shader" />
+    <None Include="resources\vertex.shader" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

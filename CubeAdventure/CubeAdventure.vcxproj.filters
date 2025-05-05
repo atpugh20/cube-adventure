@@ -15,13 +15,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\main.cpp">
+    <ClCompile Include="source\Application.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Vec2.cpp">
+    <ClCompile Include="source\Vec2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Window.cpp">
+    <ClCompile Include="source\Window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="external\GLAD\src\glad.c">
@@ -47,8 +47,15 @@
     <ClInclude Include="include\Macros.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\Player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Library Include="external\GLFW\glfw3.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\vertex.shader" />
+    <None Include="resources\fragment.shader" />
   </ItemGroup>
 </Project>
