@@ -27,6 +27,18 @@
     <ClCompile Include="external\GLAD\src\glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\VertexBuffer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\VertexArray.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ElementBuffer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Shader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="external\GLAD\include\glad\glad.h">
@@ -50,12 +62,27 @@
     <ClInclude Include="include\Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\Vertex.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\VertexBuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\VertexArray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ElementBuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Library Include="external\GLFW\glfw3.lib" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="resources\vertex.shader" />
-    <None Include="resources\fragment.shader" />
+    <None Include="resources\shaders\vertex.shader" />
+    <None Include="resources\shaders\fragment.shader" />
   </ItemGroup>
 </Project>
