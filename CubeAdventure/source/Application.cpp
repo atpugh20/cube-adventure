@@ -7,28 +7,23 @@
 #include "ElementBuffer.h"
 #include "Shader.h"
 
+#include "Player.h"
+
 #define print(x) std::cout << x << std::endl;
 
 int main(void) {
-    const float screen_width  = 256.0;
-    const float screen_height = 240.0;
+    const float screen_width  = 600.0f;
+    const float screen_height = 600.0f;
     const char* title = "Cube Adventure";
 
     const char *vertex_path   = "resources/shaders/vertex.shader";
     const char *fragment_path = "resources/shaders/fragment.shader";
 
     GLFWwindow *window = CreateWindow(screen_height, screen_height, title);
-    
-    Vertex vertices[] = {
-        {{ 0.5f,  0.5f, 1.0f, 1.0f}, {1.0f, 1.0f, 1.0f, 1.0f}},
-        {{-0.5f, -0.5f, 1.0f, 1.0f}, {1.0f, 1.0f, 1.0f, 1.0f}},
-        {{-0.5f, -0.5f, 1.0f, 1.0f}, {1.0f, 1.0f, 1.0f, 1.0f}},
-    };
 
-    int indices[] = {
-        0, 1, 2
-    };
-    int index_count = sizeof(indices) / sizeof(int);
+    Player player = Player(0.1f);
+   
+    int index_count = sizeof(player.indices) / sizeof(int);
     
     VertexArray*   VAO = new VertexArray();
     VertexBuffer*  VBO = new VertexBuffer();
@@ -36,26 +31,31 @@ int main(void) {
     Shader *shader = new Shader(vertex_path, fragment_path);
 
     VAO->Bind();
-    VBO->Bind(vertices, sizeof(vertices));
-    EBO->Bind(indices, sizeof(indices));
+    VBO->Bind(player.vertices, sizeof(player.vertices));
+    EBO->Bind(player.indices, sizeof(player.indices));
 
     VBO->SetAttributes();
 
     // Unbind all vertex objects before first render 
-    /*VAO->Unbind();
+    VAO->Unbind();
     VBO->Unbind();
-    EBO->Unbind();*/
+    EBO->Unbind();
 
     shader->Use();
+
+    player.Vel = Vec2(0.01, 0);
  
     // Main Draw Loop
     while (!glfwWindowShouldClose(window)) {
         glClear(GL_COLOR_BUFFER_BIT);
 
+        player.Update();
+        print(player.vertices[0].position[0]);
+
         shader->Use();
 
         VAO->Bind();
-        VBO->Rebind(vertices, sizeof(vertices));
+        VBO->Rebind(player.vertices, sizeof(player.vertices));
 
         glDrawElements(GL_TRIANGLES, index_count, GL_UNSIGNED_INT, 0);
 
@@ -66,6 +66,7 @@ int main(void) {
     delete VAO;
     delete VBO;
     delete EBO;
+    delete shader;
 
     glfwTerminate();
     return 0;

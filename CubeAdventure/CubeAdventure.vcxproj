@@ -138,6 +138,7 @@
     <ClCompile Include="external\GLAD\src\glad.c" />
     <ClCompile Include="source\Application.cpp" />
     <ClCompile Include="source\ElementBuffer.cpp" />
+    <ClCompile Include="source\Player.cpp" />
     <ClCompile Include="source\Shader.cpp" />
     <ClCompile Include="source\Vec2.cpp" />
     <ClCompile Include="source\VertexArray.cpp" />
