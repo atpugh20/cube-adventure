@@ -140,7 +140,7 @@
     <ClCompile Include="source\ElementBuffer.cpp" />
     <ClCompile Include="source\Player.cpp" />
     <ClCompile Include="source\Shader.cpp" />
-    <ClCompile Include="source\Vec2.cpp" />
+    <ClCompile Include="source\Vec3.cpp" />
     <ClCompile Include="source\VertexArray.cpp" />
     <ClCompile Include="source\VertexBuffer.cpp" />
     <ClCompile Include="source\Window.cpp" />
@@ -152,7 +152,7 @@
     <ClInclude Include="include\ElementBuffer.h" />
     <ClInclude Include="include\Macros.h" />
     <ClInclude Include="include\Shader.h" />
-    <ClInclude Include="include\Vec2.h" />
+    <ClInclude Include="include\Vec3.h" />
     <ClInclude Include="include\Vertex.h" />
     <ClInclude Include="include\VertexArray.h" />
     <ClInclude Include="include\VertexBuffer.h" />

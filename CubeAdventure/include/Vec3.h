@@ -1,24 +1,25 @@
 #pragma once
 
-class Vec2 {
+class Vec3 {
 private:
-    float x, y;
+    float x, y, z;
 
 public:
-    Vec2(float x = 0, float y = 0) : x(x), y(y)  {}
+    Vec3(float x = 0, float y = 0, float z = 0) : x(x), y(y), z(z) {}
     
     // Standard operations
-    void Add(Vec2 vec);
-    void Sub(Vec2 vec);
+    void Add(Vec3 vec);
+    void Sub(Vec3 vec);
     void Mult(float scalar);
     void Div(float scalar);
     
     // Advanced operations
     void Normalize();
-    Vec2 Copy();
+    Vec3 Copy();
     
     // Getters
     float GetX() const;
     float GetY() const;
+    float GetZ() const;
     float GetMagnitude() const;
 };

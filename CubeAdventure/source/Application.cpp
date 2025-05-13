@@ -43,7 +43,7 @@ int main(void) {
 
     shader->Use();
 
-    player.Vel = Vec2(0.01, 0);
+    player.Vel = Vec3(0.0001, 0, 0);
  
     // Main Draw Loop
     while (!glfwWindowShouldClose(window)) {

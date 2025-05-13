@@ -1,13 +1,13 @@
 #pragma once
 
 #include "Vertex.h"
-#include "Vec2.h"
+#include "Vec3.h"
 
 class Player {
 public:
-    Vec2 Pos;
-    Vec2 Vel;
-    Vec2 Acc;
+    Vec3 Pos;
+    Vec3 Vel;
+    Vec3 Acc;
 
     float Size;
 
@@ -30,7 +30,12 @@ public:
         2, 3, 0
     };
 
-    Player(float size = 1.0f, float x = 0, float y = 0, float vel_x = 0, float vel_y = 0, float acc_x = 0, float acc_y = 0);
+    Player(
+        float size = 1.0f, 
+        float x = 0,     float y = 0,     float z = 0,
+        float vel_x = 0, float vel_y = 0, float vel_z = 0, 
+        float acc_x = 0, float acc_y = 0, float acc_z = 0
+    );
 
     void Update();
     void Draw();

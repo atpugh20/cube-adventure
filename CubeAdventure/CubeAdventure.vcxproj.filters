@@ -18,7 +18,7 @@
     <ClCompile Include="source\Application.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\Vec2.cpp">
+    <ClCompile Include="source\Vec3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\Window.cpp">
@@ -53,7 +53,7 @@
     <ClInclude Include="external\GLFW\glfw3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Vec2.h">
+    <ClInclude Include="include\Vec3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Window.h">
