@@ -1,25 +1,8 @@
-#include "Macros.h"
-#include "Window.h"
-#include "Vertex.h"
+#include "Application.h"
 
-#include "VertexArray.h"
-#include "VertexBuffer.h"
-#include "ElementBuffer.h"
-#include "Shader.h"
+void Application::Run() {
 
-#include "Player.h"
-
-#define print(x) std::cout << x << std::endl;
-
-int main(void) {
-    const float screen_width  = 600.0f;
-    const float screen_height = 600.0f;
-    const char* title = "Cube Adventure";
-
-    const char *vertex_path   = "resources/shaders/vertex.shader";
-    const char *fragment_path = "resources/shaders/fragment.shader";
-
-    GLFWwindow *window = CreateWindow(screen_height, screen_height, title);
+	Window window = Window(ScreenWidth, ScreenHeight, WindowTitle);
 
     Player player = Player(0.1f);
    
@@ -28,7 +11,7 @@ int main(void) {
     VertexArray*   VAO = new VertexArray();
     VertexBuffer*  VBO = new VertexBuffer();
     ElementBuffer* EBO = new ElementBuffer();
-    Shader *shader = new Shader(vertex_path, fragment_path);
+    Shader *shader = new Shader(VertexPath, FragmentPath);
 
     VAO->Bind();
     VBO->Bind(player.vertices, sizeof(player.vertices));
@@ -44,9 +27,9 @@ int main(void) {
     shader->Use();
 
     player.Vel = Vec3(0.0001, 0, 0);
- 
+
     // Main Draw Loop
-    while (!glfwWindowShouldClose(window)) {
+    while (!glfwWindowShouldClose(window.GetWindow())) {
         glClear(GL_COLOR_BUFFER_BIT);
 
         player.Update();
@@ -59,7 +42,7 @@ int main(void) {
 
         glDrawElements(GL_TRIANGLES, index_count, GL_UNSIGNED_INT, 0);
 
-        glfwSwapBuffers(window);
+        glfwSwapBuffers(window.GetWindow());
         glfwPollEvents();
     }
 
@@ -69,5 +52,4 @@ int main(void) {
     delete shader;
 
     glfwTerminate();
-    return 0;
 }

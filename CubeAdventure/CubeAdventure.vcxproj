@@ -138,6 +138,7 @@
     <ClCompile Include="external\GLAD\src\glad.c" />
     <ClCompile Include="source\Application.cpp" />
     <ClCompile Include="source\ElementBuffer.cpp" />
+    <ClCompile Include="source\main.cpp" />
     <ClCompile Include="source\Player.cpp" />
     <ClCompile Include="source\Shader.cpp" />
     <ClCompile Include="source\Vec3.cpp" />
@@ -149,6 +150,7 @@
     <ClInclude Include="external\GLAD\include\glad\glad.h" />
     <ClInclude Include="external\GLAD\include\KHR\khrplatform.h" />
     <ClInclude Include="external\GLFW\glfw3.h" />
+    <ClInclude Include="include\Application.h" />
     <ClInclude Include="include\ElementBuffer.h" />
     <ClInclude Include="include\Macros.h" />
     <ClInclude Include="include\Shader.h" />

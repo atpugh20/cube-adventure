@@ -31,12 +31,11 @@ public:
     };
 
     Player(
-        float size = 1.0f, 
-        float x = 0,     float y = 0,     float z = 0,
-        float vel_x = 0, float vel_y = 0, float vel_z = 0, 
-        float acc_x = 0, float acc_y = 0, float acc_z = 0
+        float size = 1.0f,
+		float x = 0, float vel_x = 0, float acc_x = 0,
+		float y = 0, float vel_y = 0, float acc_y = 0,
+		float z = 0, float vel_z = 0, float acc_z = 0
     );
 
     void Update();
-    void Draw();
 };

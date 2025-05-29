@@ -25,7 +25,7 @@ void Vec3::Mult(float scalar) {
 
 void Vec3::Div(float scalar) {
     if (scalar == 0) {
-        print("Cannot divide by zero!");
+        print("Cannot divide by zero! Vector will remain the same.");
         scalar = 1;
     } 
     x /= scalar;

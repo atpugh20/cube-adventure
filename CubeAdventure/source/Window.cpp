@@ -1,34 +1,42 @@
 #include "Window.h"
 
+Window::Window(const float &width, const float &height, const char *title)
+: Width(width), Height(height), Title(title) {
+    Init();
+}
 
-GLFWwindow *CreateWindow(const float &width, const float &height, const char *title) {
+Window::~Window() {
+    glfwDestroyWindow(window);
+    glfwTerminate();
+}
+
+void Window::Init() {
     /**
-     * Initializes a window using GLFW and GLAD
-     * then returns it to be used by the render loop.
+	 * Initializes the GLFW window and sets up GLAD.
      */
-    GLFWwindow *window;
 
-    // Initialize GLFw 
-    if (!glfwInit()) {
+	// Initialize GLFw 
+    if (!glfwInit())
         print("Cannot initialize GLFW.");
-        return nullptr;
-    }
     
     // Create window
-    window = glfwCreateWindow(width, height, title, NULL, NULL);
+    window = glfwCreateWindow(Width, Height, Title, NULL, NULL);
+
     if (!window) {
         print("Could not create window");
         glfwTerminate();
-        return nullptr;
     }
 
     glfwMakeContextCurrent(window);
 
     // Initialize GLAD
-    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
-        print("Failed to initilize GLAD");
-        return nullptr;
-    }
-    
-    return window;
+    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) 
+        print("Failed to initilize GLAD");   
+ 
 }
+
+GLFWwindow *Window::GetWindow() const { return window; }
+
+float Window::GetWidth() const { return Width; }
+float Window::GetHeight() const { return Height; }
+const char* Window::GetTitle() const { return Title; }
