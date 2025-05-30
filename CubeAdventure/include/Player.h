@@ -32,9 +32,9 @@ public:
 
     Player(
         float size = 1.0f,
-		float x = 0, float vel_x = 0, float acc_x = 0,
-		float y = 0, float vel_y = 0, float acc_y = 0,
-		float z = 0, float vel_z = 0, float acc_z = 0
+		float x     = 0.0f, float y     = 0.0f, float z     = 0.0f,
+		float vel_x = 0.0f, float vel_y = 0.0f, float vel_z = 0.0f,
+		float acc_x = 0.0f, float acc_y = 0.0f, float acc_z = 0.0f
     );
 
     void Update();

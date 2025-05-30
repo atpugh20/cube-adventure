@@ -1,55 +1,62 @@
 #include "Application.h"
 
+
+Application::Application() 
+	: DeltaTime(0.0f),
+	  LastFrameTime(0.0f),
+
+      ScreenWidth(600.0f), 
+      ScreenHeight(600.0f), 
+      WindowTitle("Cube Adventure"), 
+
+      VertexPath("resources/shaders/vertex.shader"), 
+	  FragmentPath("resources/shaders/fragment.shader") 
+{}
+
 void Application::Run() {
+	Window* window = new Window(ScreenWidth, ScreenHeight, WindowTitle);
+	Renderer *renderer = new Renderer(VertexPath, FragmentPath);
 
-	Window window = Window(ScreenWidth, ScreenHeight, WindowTitle);
-
-    Player player = Player(0.1f);
-   
-    int index_count = sizeof(player.indices) / sizeof(int);
+    Player player = Player(0.05f);
+    Player player2 = Player(0.05f, 0.5, 0.5, 0.5);
     
-    VertexArray*   VAO = new VertexArray();
-    VertexBuffer*  VBO = new VertexBuffer();
-    ElementBuffer* EBO = new ElementBuffer();
-    Shader *shader = new Shader(VertexPath, FragmentPath);
+	int v_size = sizeof(player.vertices) / sizeof(player.vertices[0]);
+	int i_size = sizeof(player.indices) / sizeof(player.indices[0]);
+	renderer->AddVertices(player.vertices, v_size, player.indices, i_size);
+    
+    v_size = sizeof(player2.vertices) / sizeof(player2.vertices[0]);
+	i_size = sizeof(player2.indices) / sizeof(player2.indices[0]);
+	renderer->AddVertices(player2.vertices, v_size, player2.indices, i_size);
+   
+    renderer->Bind();
+    renderer->Unbind();
 
-    VAO->Bind();
-    VBO->Bind(player.vertices, sizeof(player.vertices));
-    EBO->Bind(player.indices, sizeof(player.indices));
-
-    VBO->SetAttributes();
-
-    // Unbind all vertex objects before first render 
-    VAO->Unbind();
-    VBO->Unbind();
-    EBO->Unbind();
-
-    shader->Use();
-
-    player.Vel = Vec3(0.0001, 0, 0);
+	player2.Vel = Vec3(0.05f, 0.0f, 0.0f);
 
     // Main Draw Loop
-    while (!glfwWindowShouldClose(window.GetWindow())) {
+    while (!glfwWindowShouldClose(window->GetWindow())) {
         glClear(GL_COLOR_BUFFER_BIT);
+        
+        renderer->ResetVertices();
 
         player.Update();
-        print(player.vertices[0].position[0]);
+		v_size = sizeof(player.vertices) / sizeof(player.vertices[0]);
+		i_size = sizeof(player.indices) / sizeof(player.indices[0]);
+		renderer->AddVertices(player.vertices, v_size, player.indices, i_size);
 
-        shader->Use();
+        player2.Update();
+		v_size = sizeof(player2.vertices) / sizeof(player2.vertices[0]);
+		i_size = sizeof(player2.indices) / sizeof(player2.indices[0]);
+		renderer->AddVertices(player2.vertices, v_size, player2.indices, i_size);
+   
 
-        VAO->Bind();
-        VBO->Rebind(player.vertices, sizeof(player.vertices));
+        renderer->Bind();
+        renderer->Draw();
 
-        glDrawElements(GL_TRIANGLES, index_count, GL_UNSIGNED_INT, 0);
-
-        glfwSwapBuffers(window.GetWindow());
+        glfwSwapBuffers(window->GetWindow());
         glfwPollEvents();
     }
-
-    delete VAO;
-    delete VBO;
-    delete EBO;
-    delete shader;
-
-    glfwTerminate();
+    
+    delete renderer;
+	delete window;
 }

@@ -3,7 +3,7 @@
 #include "Macros.h"
 #include "Window.h"
 #include "Vertex.h"
-
+#include "Renderer.h"
 
 #include "Player.h"
 
@@ -11,6 +11,7 @@
 class Application {
 private:
 	float DeltaTime;
+	float LastFrameTime;
 
 	float ScreenWidth;
 	float ScreenHeight;
@@ -20,13 +21,7 @@ private:
 	const char* FragmentPath;
 
 public:
-	Application() {
-		ScreenWidth = 600.0f;
-		ScreenHeight = 600.0f;
-		WindowTitle = "Cube Adventure";
-
-		VertexPath   = "resources/shaders/vertex.shader";
-		FragmentPath = "resources/shaders/fragment.shader";
-	}
+	Application();
+		
 	void Run();
 };

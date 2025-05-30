@@ -19,7 +19,10 @@ private:
 	GLFWwindow* window;
 
 public:
-	Window(const float& width, const float& height, const char* title);
+	Window(const float& width	= 600.0f, 
+		   const float& height  = 600.0f, 
+		   const char* title	= "New Window");
+
 	~Window();
 	
 	void Init();

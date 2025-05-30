@@ -1,7 +1,7 @@
 #include "Window.h"
 
 Window::Window(const float &width, const float &height, const char *title)
-: Width(width), Height(height), Title(title) {
+: Width(width), Height(height), Title(title), window(nullptr) {
     Init();
 }
 
