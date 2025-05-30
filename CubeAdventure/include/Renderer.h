@@ -31,7 +31,7 @@ public:
 	void ResetVertices();
 
 	void Draw() const;
-	
+
 	void PrintVertices() const;
 	void PrintIndices() const;
 

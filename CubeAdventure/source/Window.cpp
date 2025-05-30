@@ -35,8 +35,22 @@ void Window::Init() {
  
 }
 
+void Window::UpdateMousePosition() {
+    glfwGetCursorPos(glfwGetCurrentContext(), &MouseX, &MouseY);
+
+	// Invert Y coordinate to match OpenGL's coordinate system
+	MouseX =  (MouseX - Width  / 2);
+	MouseY = -(MouseY - Height / 2);
+
+    print(MouseX);
+}
+
 GLFWwindow *Window::GetWindow() const { return window; }
+    
+double Window::GetMouseX() const { return MouseX; }
+double Window::GetMouseY() const { return MouseY; }
 
 float Window::GetWidth() const { return Width; }
 float Window::GetHeight() const { return Height; }
+
 const char* Window::GetTitle() const { return Title; }

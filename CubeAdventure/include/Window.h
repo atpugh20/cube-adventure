@@ -15,6 +15,9 @@ private:
 	float Width;
 	float Height;
 	const char* Title;
+	
+	double MouseX;
+	double MouseY;
 
 	GLFWwindow* window;
 
@@ -28,6 +31,11 @@ public:
 	void Init();
 
 	GLFWwindow* GetWindow() const;
+
+	void UpdateMousePosition();
+
+	double GetMouseX() const;
+	double GetMouseY() const;
 
 	float GetWidth() const;
 	float GetHeight() const;

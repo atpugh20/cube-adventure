@@ -51,3 +51,15 @@ float Vec3::GetZ() const { return z; }
 float Vec3::GetMagnitude() const { 
     return std::sqrt(x * x + y * y + z * z); 
 }
+
+// Setters
+
+void Vec3::SetX(float x) { this->x = x; }
+void Vec3::SetY(float y) { this->y = y; }
+void Vec3::SetZ(float z) { this->z = z; }
+
+void Vec3::Set(float x, float y, float z) { 
+    this->x = x; 
+    this->y = y; 
+    this->z = z; 
+}

@@ -11,7 +11,7 @@ Player::Player(
     Acc = Vec3(acc_x, acc_y, acc_z);
 }
 
-void Player::Update() {
+void Player::UpdatePosition() {
     // Update using Euler 
     Vel.Add(Acc);
     Pos.Add(Vel);
@@ -25,4 +25,20 @@ void Player::Update() {
         vertices[i].position[2] = 
             (relative_vertices[i].position[2] + Pos.GetZ()) * Size;
     }
+}
+
+float Player::GetX() const { return Pos.GetX(); }
+float Player::GetY() const { return Pos.GetY(); }
+float Player::GetZ() const { return Pos.GetZ(); }
+
+void Player::SetPosition(float x, float y, float z) {
+    Pos.Set(x, y, z);
+}
+
+void Player::SetVelocity(float x, float y, float z) {
+    Vel.Set(x, y, z);
+}
+
+void Player::SetAcceleration(float x, float y, float z) {
+    Acc.Set(x, y, z);
 }

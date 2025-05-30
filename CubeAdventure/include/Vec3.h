@@ -16,10 +16,18 @@ public:
     // Advanced operations
     void Normalize();
     Vec3 Copy();
-    
+
     // Getters
     float GetX() const;
     float GetY() const;
     float GetZ() const;
+    
     float GetMagnitude() const;
+    
+	// Setters
+	void SetX(float x);
+	void SetY(float y);
+	void SetZ(float z);
+
+	void Set(float x, float y, float z);
 };

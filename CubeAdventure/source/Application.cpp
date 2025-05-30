@@ -18,7 +18,7 @@ void Application::Run() {
 	Renderer *renderer = new Renderer(VertexPath, FragmentPath);
 
     Player player = Player(0.05f);
-    Player player2 = Player(0.05f, 0.5, 0.5, 0.5);
+    Player player2 = Player(0.05f, 0.5, 0.5, 0);
     
 	int v_size = sizeof(player.vertices) / sizeof(player.vertices[0]);
 	int i_size = sizeof(player.indices) / sizeof(player.indices[0]);
@@ -31,24 +31,27 @@ void Application::Run() {
     renderer->Bind();
     renderer->Unbind();
 
-	player2.Vel = Vec3(0.05f, 0.0f, 0.0f);
-
     // Main Draw Loop
     while (!glfwWindowShouldClose(window->GetWindow())) {
         glClear(GL_COLOR_BUFFER_BIT);
         
+        window->UpdateMousePosition();
+
         renderer->ResetVertices();
 
-        player.Update();
+        player.UpdatePosition();
 		v_size = sizeof(player.vertices) / sizeof(player.vertices[0]);
 		i_size = sizeof(player.indices) / sizeof(player.indices[0]);
 		renderer->AddVertices(player.vertices, v_size, player.indices, i_size);
 
-        player2.Update();
+		player2.SetPosition(window->GetMouseX(), window->GetMouseY(), 0.0f);
+		player2.UpdatePosition();
 		v_size = sizeof(player2.vertices) / sizeof(player2.vertices[0]);
 		i_size = sizeof(player2.indices) / sizeof(player2.indices[0]);
 		renderer->AddVertices(player2.vertices, v_size, player2.indices, i_size);
-   
+    
+        print(player2.GetX());
+		print(player.GetX());
 
         renderer->Bind();
         renderer->Draw();
